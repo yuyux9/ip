@@ -23,7 +23,7 @@ async function handleRequest(request) {
   let url = new URL(request.url);
 
   // Redirect to the URL shortener app if not exact match
-  if (url.hostname != "ip.burd.se" && !url.pathname.startsWith("/ip")) {
+  if (url.hostname != "maid.yuyux.xyz" && !url.pathname.startsWith("/")) {
     let newUrl = new URL(request.url); // Avoid modifying "url"
     newUrl.hostname = "s.burd.se";
 
@@ -58,7 +58,7 @@ async function handleRequest(request) {
     : [];
 
   let org;
-  if (url.pathname == "/ip/as" && cf.asn) {
+  if (url.pathname == "/as" && cf.asn) {
     let ripe = await fetch(
       "https://rest.db.ripe.net/search.json?query-string=AS" + cf.asn
     );
