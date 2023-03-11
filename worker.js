@@ -25,7 +25,7 @@ async function handleRequest(request) {
   // Redirect to the URL shortener app if not exact match
   if (url.hostname != "maid.yuyux.xyz" && !url.pathname.startsWith("/")) {
     let newUrl = new URL(request.url); // Avoid modifying "url"
-    newUrl.hostname = "s.burd.se";
+    newUrl.hostname = "maid.yuyux.xyz";
 
     return new Response("", {
       status: 302,
