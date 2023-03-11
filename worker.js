@@ -23,9 +23,9 @@ async function handleRequest(request) {
   let url = new URL(request.url);
 
   // Redirect to the URL shortener app if not exact match
-  if (url.hostname != "maid.yuyux.xyz" && !url.pathname.startsWith("/")) {
+  if (url.hostname != "ip.burd.se" && !url.pathname.startsWith("/ip")) {
     let newUrl = new URL(request.url); // Avoid modifying "url"
-    newUrl.hostname = "maid.yuyux.xyz";
+    newUrl.hostname = "s.burd.se";
 
     return new Response("", {
       status: 302,
@@ -58,7 +58,7 @@ async function handleRequest(request) {
     : [];
 
   let org;
-  if (url.pathname == "/as" && cf.asn) {
+  if (url.pathname == "/ip/as" && cf.asn) {
     let ripe = await fetch(
       "https://rest.db.ripe.net/search.json?query-string=AS" + cf.asn
     );
@@ -132,7 +132,7 @@ ${ip}
 ${records.join("\n")}
 <a href="https://apps.db.ripe.net/db-web-ui/#/query?searchtext=AS${cf.asn}">AS${
     cf.asn
-  }</a> (${org ? org : "<a href='/as'>get info</a>"})
+  }</a> (${org ? org : "<a href='/ip/as'>get info</a>"})
 Country: ${cf.country}
 <a href="https://support.cloudflare.com/hc/en-us/articles/203118044#h_22b01241-01a5-4bed-a897-6e97cff5c288">Data center</a>: ${
     cf.colo
